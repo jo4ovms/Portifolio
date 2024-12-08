@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,36 +13,32 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
+import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
+import "./Navbar.css";
 const drawerWidth = 240;
 const navItems = ["Sobre", "Projetos", "Habilidades", "Contato"];
 
 function Navbar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => {
-        console.log(window.scrollY);
-        if (window.scrollY > 50) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
-      };
-
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 20) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -62,21 +58,26 @@ function Navbar(props) {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = props.window
+    ? () => props.window().document.body
+    : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         component="nav"
+        className={scrolling ? "navbar-scroll" : ""}
         sx={{
-          bgcolor: scrolled ? "black" : "transparent",
+          backgroundColor: scrolling ? "#000" : "transparent",
+
           position: "fixed",
           width: "100%",
           top: 0,
-          boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.2)" : "none",
-          transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+          boxShadow: scrolling ? "0 2px 10px rgba(0, 0, 0, 0.2)" : "none",
+
+          transition:
+            "background-color 1s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 1s cubic-bezier(0.4, 0.0, 0.2, 1)",
         }}
       >
         <Toolbar
@@ -114,6 +115,8 @@ function Navbar(props) {
                   fontWeight: "bold",
                   fontFamily: "DM Sans",
                 }}
+                component={Link}
+                to={`/${item.toLowerCase()}`}
               >
                 {item}
               </Button>
@@ -128,7 +131,7 @@ function Navbar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
