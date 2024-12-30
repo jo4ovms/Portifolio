@@ -1,4 +1,4 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, useTheme, useMediaQuery } from "@mui/material";
 import {
   Timeline,
   TimelineItem,
@@ -10,25 +10,58 @@ import {
 import Grid from "@mui/material/Grid2";
 
 const About = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const stats = [
+    {
+      value: "5+",
+      description: "Projetos próprios e acadêmicos desenvolvidos",
+    },
+    {
+      value: "10+",
+      description:
+        "Tecnologias aprendidas e aplicadas, como Java, React e Spring",
+    },
+    {
+      value: "200+",
+      description:
+        "Horas dedicadas a cursos, estudos e desenvolvimento prático",
+    },
+    { value: "100%", description: "Dedicado a aprender e evoluir" },
+  ];
+
   return (
     <div>
+      {/* Título e introdução */}
       <Box>
         <Typography
+          variant="h1"
+          style={{
+            background: "linear-gradient(to bottom, #fff 20%, #696969 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
           sx={{
-            fontSize: 48,
-            color: "#ffffff",
+            fontSize: { xs: "2.5rem", sm: "4rem", md: "4rem" },
+            textAlign: "start",
+            mb: 4,
             fontFamily: "DM Sans",
           }}
         >
           Sobre mim
         </Typography>
         <Typography
+          variant="body1"
           sx={{
-            fontSize: 20,
-            fontFamily: "DM Sans",
+            fontSize: { xs: "0.9rem", sm: "1rem", md: "1.2rem" },
+            textAlign: "start",
+            mx: "auto",
+            maxWidth: "90%",
+            mb: 4,
             color: "#B4B4B4",
-            marginLeft: "30px",
-            mt: "30px",
+            fontFamily: "DM Sans",
           }}
         >
           Transformo ideias em soluções práticas, desenvolvendo aplicações
@@ -36,160 +69,69 @@ const About = () => {
           crescer e entregar valor.
         </Typography>
       </Box>
-      <Box
-        sx={{
-          display: "column",
-          mt: "80px",
-          ml: "-30px",
-        }}
-      >
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="space-between"
-        >
-          <Grid item>
-            <Typography
-              sx={{
-                color: "#fff",
-                fontSize: 50,
-                width: "61px",
-                height: "65px",
-                ml: "30px",
-                fontWeight: "bold",
-              }}
-            >
-              5+
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 16,
-                fontFamily: "DM Sans",
-                color: "#B4B4B4",
-                marginLeft: "30px",
-                mt: "30px",
-                width: "223px",
-                height: "115px",
-              }}
-            >
-              Projetos próprios e acadêmicos desenvolvidos
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              sx={{
-                color: "#fff",
-                fontSize: 50,
-                width: "61px",
-                height: "65px",
-                ml: "30px",
-                fontWeight: "bold",
-              }}
-            >
-              10+
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 16,
-                fontFamily: "DM Sans",
-                color: "#B4B4B4",
-                marginLeft: "30px",
-                mt: "30px",
-                width: "223px",
-                height: "115px",
-              }}
-            >
-              Tecnologias aprendidas e aplicadas, como Java, React e Spring
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              sx={{
-                color: "#fff",
-                fontSize: 50,
-                width: "61px",
-                height: "65px",
-                ml: "30px",
-                fontWeight: "bold",
-              }}
-            >
-              200+
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 16,
-                fontFamily: "DM Sans",
-                color: "#B4B4B4",
-                marginLeft: "30px",
-                mt: "30px",
-                width: "223px",
-                height: "115px",
-              }}
-            >
-              Horas dedicadas a cursos, estudos e desenvolvimento prático
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography
-              sx={{
-                color: "#fff",
-                fontSize: 50,
-                width: "61px",
-                height: "65px",
-                ml: "30px",
-                fontWeight: "bold",
-              }}
-            >
-              100%
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 16,
-                fontFamily: "DM Sans",
-                color: "#B4B4B4",
-                marginLeft: "30px",
-                mt: "30px",
-                width: "223px",
-                height: "115px",
-              }}
-            >
-              Dedicado a aprender e evoluir
-            </Typography>
-          </Grid>
-        </Grid>
 
-        <Box
-          mt="100px"
-          display={"flex"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          position={"relative"}
-          width={"100%"}
-          height={"450px"}
-        >
-          <div
-            style={{
-              width: 538,
-              height: 564,
+      {/* Stats */}
+      <Grid container spacing={4} justifyContent="center" alignItems="center">
+        {stats.map((stat, index) => (
+          <Grid size={{ xs: 12, sm: 12, md: 3 }} key={index}>
+            <Box textAlign="center">
+              <Typography
+                variant="h3"
+                sx={{
+                  color: "#fff",
+                  fontWeight: "bold",
+                  mb: 1,
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                }}
+              >
+                {stat.value}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#B4B4B4",
+                  fontFamily: "DM Sans",
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                }}
+              >
+                {stat.description}
+              </Typography>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* Imagem e texto principal */}
+      <Grid
+        container
+        spacing={4}
+        alignItems="center"
+        sx={{ mt: 6 }}
+        direction={isSmallScreen ? "column" : "row"}
+      >
+        <Grid size={{ xs: 6, md: 5 }}>
+          <Box
+            component="img"
+            src="me3.jpg"
+            sx={{
+              width: { xs: "600px", md: "500px" },
+              height: { xs: "600px", md: "500px" },
               background: "#fff",
-              borderRadius: 30,
-              border: "4px #130F40 solid",
-              position: "initial",
+              borderRadius: "30px",
+              border: "4px solid #130F40",
             }}
           />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Typography
+            variant="h2"
             sx={{
-              fontSize: 48,
+              fontSize: { xs: "1.5rem", sm: "2rem", md: "3rem" },
               color: "#fff",
-              width: 721,
-              height: 239,
+              mb: 2,
               fontFamily: "DM Sans",
-              mt: "30px",
               fontWeight: "bold",
-              left: 600,
-              top: -70,
-              position: "absolute",
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             <span style={{ color: "#00D9FF" }}>Desenvolvedor </span>focado em
@@ -198,222 +140,112 @@ const About = () => {
           </Typography>
           <Typography
             sx={{
-              fontSize: 18,
-              fontFamily: "DM Sans",
+              fontSize: { xs: "0.8rem", sm: "1rem" },
               color: "#B4B4B4",
-              marginLeft: "30px",
-              top: 200,
-              left: 570,
-              position: "absolute",
+              textAlign: { xs: "center", md: "left" },
+              lineHeight: 1.5,
             }}
           >
-            <p style={{ marginBottom: "30px" }}>
-              Olá! Eu sou João Victor, estudante de Análise e Desenvolvimento de
-              Sistemas. Minha jornada na tecnologia começou por curiosidade,
-              desde criança tive contato com tecnologia então logo virou uma
-              paixão. Desde então, tenho me dedicado a aprender e criar projetos
-              que colocam em prática tudo o que estudo, usando tecnologias como
-              Java, React, Docker e PostgreSQL.
-            </p>
-
-            <p>
-              Mesmo sem experiência formal ainda, cada projeto pessoal me ajuda
-              a crescer, aprender com desafios reais e entender como criar
-              aplicações modernas e escaláveis. Estou sempre buscando melhorar
-              minhas habilidades e me preparar para contribuir em projetos que
-              façam a diferença.{" "}
-            </p>
+            Olá! Eu sou João Victor, estudante de Análise e Desenvolvimento de
+            Sistemas. Minha jornada na tecnologia começou por curiosidade, e
+            logo virou uma paixão. Tenho me dedicado a aprender e criar projetos
+            que colocam em prática tudo o que estudo, usando tecnologias como
+            Java, React, Docker e PostgreSQL.
+            <br />
+            <br />
+            Mesmo sem experiência formal ainda, cada projeto pessoal me ajuda a
+            crescer, aprender com desafios reais e entender como criar
+            aplicações modernas e escaláveis.
           </Typography>
-        </Box>
+        </Grid>
+      </Grid>
 
-        <Box mt="100px" display={"flex"} justifyContent={"flex-start"}>
-          <div
-            style={{
-              width: "100%",
-              height: 970,
-              position: "absolute",
-              background: "#070707",
-              left: 0,
-              marginTop: "100px",
-            }}
-          />
-          <Typography
-            sx={{
-              fontSize: 80,
-              fontFamily: "DM Sans",
-              fontWeight: "bold",
-              color: "#fff",
-              position: "absolute",
-              top: 1400,
-            }}
-          >
-            Minha trajetória
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: 18,
-              fontFamily: "DM Sans",
-              color: "#B4B4B4",
-              marginLeft: "30px",
-              top: 1550,
-              left: 300,
-              position: "absolute",
-            }}
-          >
-            Construindo uma base sólida em desenovlvimento de software por meio
-            de cursos e projetos práticos.
-          </Typography>
-
-          <Box sx={{ mt: "350px", ml: "-1320px" }}>
-            <Timeline position="right">
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot color="primary" />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#070707",
-                    color: "#fff",
-                    px: 2,
-                    width: "100%",
-                  }}
-                >
-                  <Typography variant="h6" component="span">
-                    <Box
-                      sx={{
-                        border: "2px solid #fff",
-                        borderRadius: "40px",
-                        color: "#00D9FF",
-                        display: "inline-block",
-                        borderWidth: "1px",
-                        borderColor: "#FFF",
-                        width: "150px",
-                        height: "47px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontSize: "15px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        2023 - PRESENTE
-                      </Typography>
-                    </Box>
-                  </Typography>
-                  <Typography sx={{ fontWeight: "bold", fontSize: "30px" }}>
-                    Instituto Federal Catarinense - Campus Fraiburgo
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      color: "#b4b4b4",
-                    }}
-                  >
-                    @ Estudante de Análise e Desenvolvimento de Sistemas
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "20px",
-                      color: "#b4b4b4",
-                      mt: "10px",
-                    }}
-                  >
-                    No curso, tenho aprendido fundamentos de programação e banco
-                    de dados, consolidando a base necessária para o
-                    desenvolvimento de sistemas. Paralelamente, dedico-me ao
-                    aprendizado autodidata para aprofundar conhecimentos em
-                    tecnologias como Java, React, PostgreSQL, Docker e boas
-                    práticas de desenvolvimento.
-                  </Typography>
-                </TimelineContent>
-              </TimelineItem>
-
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot color="primary" />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#070707",
-                    color: "#fff",
-                    px: 2,
-                    width: "100%",
-                  }}
-                >
-                  <Typography variant="h6" component="span">
-                    <Box
-                      sx={{
-                        border: "2px solid #fff",
-                        borderRadius: "40px",
-                        color: "#00D9FF",
-                        display: "inline-block",
-                        borderWidth: "1px",
-                        borderColor: "#FFF",
-                        width: "150px",
-                        height: "47px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontSize: "15px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        2023 - PRESENTE
-                      </Typography>
-                    </Box>
-                  </Typography>
-                  <Typography sx={{ fontWeight: "bold", fontSize: "30px" }}>
-                    Stockify - Sistema de Gerenciamento de Estoque
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      color: "#b4b4b4",
-                    }}
-                  >
-                    @ Desenvolvedor Full Stack
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "20px",
-                      color: "#b4b4b4",
-                      mt: "10px",
-                    }}
-                  >
-                    Criação de um sistema completo para gerenciar o estoque de
-                    e-commerces para a matéria Projeto Interdisciplinar:
-                    <ul style={{ listStyleType: "disc", paddingLeft: "30px" }}>
-                      <li>
-                        Tecnologias utilizadas: Java, Spring Boot, React,
-                        PostgreSQL, Docker, Kafka.
-                      </li>
-                      <li>
-                        mplementação de autenticação, controle de acesso e
-                        integração de APIs RESTful.
-                      </li>
-                      <li>
-                        Deploy realizado com ferramentas como AWS EC2 e Vercel,
-                        garantindo escalabilidade e eficiência.
-                      </li>
-                    </ul>
-                  </Typography>
-                </TimelineContent>
-              </TimelineItem>
-            </Timeline>
-          </Box>
-        </Box>
+      {/* Timeline */}
+      <Box mt={10}>
+        <Typography
+          variant="h2"
+          sx={{
+            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+            fontWeight: "bold",
+            color: "#fff",
+            textAlign: "center",
+            mb: 4,
+          }}
+        >
+          Minha trajetória
+        </Typography>
+        <Timeline position={isSmallScreen ? "alternate" : "right"}>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot color="primary" />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{
+                backgroundColor: "#070707",
+                color: "#fff",
+                p: 2,
+                borderRadius: "10px",
+                maxWidth: "80%",
+                mx: "auto",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ color: "#00D9FF", fontWeight: "bold", mb: 1 }}
+              >
+                2023 - PRESENTE
+              </Typography>
+              <Typography>
+                Instituto Federal Catarinense - Campus Fraiburgo
+              </Typography>
+              <Typography sx={{ fontSize: { xs: "0.8rem", sm: "1rem" } }}>
+                Estudante de Análise e Desenvolvimento de Sistemas
+              </Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot color="primary" />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{
+                backgroundColor: "#070707",
+                color: "#fff",
+                p: 2,
+                borderRadius: "10px",
+                maxWidth: "80%",
+                mx: "auto",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ color: "#00D9FF", fontWeight: "bold", mb: 1 }}
+              >
+                2023 - PRESENTE
+              </Typography>
+              <Typography>
+                Stockify - Sistema de Gerenciamento de Estoque
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
+                  color: "#B4B4B4",
+                  mt: 1,
+                }}
+              >
+                Criação de um sistema completo para gerenciar o estoque de
+                e-commerces:
+                <ul>
+                  <li>Java, Spring Boot, React, PostgreSQL</li>
+                  <li>APIs RESTful</li>
+                  <li>Deploy em AWS e Vercel</li>
+                </ul>
+              </Typography>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
       </Box>
     </div>
   );
