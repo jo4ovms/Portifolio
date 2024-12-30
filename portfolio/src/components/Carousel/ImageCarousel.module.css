@@ -1,0 +1,41 @@
+.carousel-container {
+  position: relative;
+
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-slide {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.carousel-image {
+  width: 133px;
+  height: 80px;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-gradient-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(to right, #070707, rgba(0, 0, 0, 0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carousel-gradient-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(to left, #070707, rgba(0, 0, 0, 0));
+  pointer-events: none;
+  z-index: 1;
+}
