@@ -16,8 +16,8 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import "./Navbar.css";
-const drawerWidth = 240;
-const navItems = ["Sobre", "Projetos", "Habilidades", "Contato"];
+const drawerWidth = 150;
+const navItems = ["Home", "Sobre", "Projetos", "Habilidades", "Contato"];
 
 function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,17 +41,51 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
-      <List>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: "left",
+        backgroundColor: "#333",
+        color: "#B4B4B4",
+        height: "100%",
+      }}
+    >
+      <List
+        sx={{
+          "& .MuiListItem-root": {
+            backgroundColor: "transparent",
+            "&:hover": { backgroundColor: "#1a1a1a" },
+          },
+        }}
+      >
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+            <ListItemButton
+              component={Link}
+              to={`/${item.toLowerCase()}`}
+              sx={{ py: 1, px: 2, justifyContent: "flex-start" }}
+            >
+              <ListItemText
+                primary={item}
+                primaryTypographyProps={{
+                  display: "block",
+                  position: "relative",
+                  fontWeight: 500,
+                  fontFamily: "DM Sans",
+                  fontSize: "16px",
+                }}
+              />
             </ListItemButton>
+            <Divider
+              sx={{
+                color: "#fff",
+                backgroundColor: "#fff",
+                ml: -5,
+                width: "100%",
+                mb: 5,
+                display: "flex",
+              }}
+            />
           </ListItem>
         ))}
       </List>
@@ -94,7 +128,7 @@ function Navbar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: "#fff", fontSize: "40px" }} />
           </IconButton>
 
           <Box
@@ -109,11 +143,18 @@ function Navbar(props) {
             {navItems.map((item) => (
               <Button
                 key={item}
+                disableRipple
                 sx={{
-                  color: "#fff",
-                  fontSize: "15px",
-                  fontWeight: "bold",
+                  color: "#dedede",
+                  ":hover": {
+                    color: "#00D9FF",
+                  },
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  textTransform: "capitalize",
                   fontFamily: "DM Sans",
+                  backgroundColor: "transparent",
+                  transition: "all .5s ease",
                 }}
                 component={Link}
                 to={`/${item.toLowerCase()}`}
@@ -128,6 +169,9 @@ function Navbar(props) {
         <Drawer
           container={container}
           variant="temporary"
+          anchor="top"
+          hideBackdrop
+          transitionDuration={200}
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
@@ -135,9 +179,13 @@ function Navbar(props) {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
+
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
+              mt: "50px",
+              ml: "50px",
               width: drawerWidth,
+              height: "30vh",
             },
           }}
         >
