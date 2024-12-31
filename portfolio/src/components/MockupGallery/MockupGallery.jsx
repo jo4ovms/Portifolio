@@ -1,8 +1,14 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import "./MockupGallery.css";
+import "./MockupCSS.css";
 const MockupGallery = () => {
+  const theme = useTheme();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.down("lg"));
+  const isXLargeScreen = useMediaQuery(theme.breakpoints.down("xl"));
+
   const projects = [
     { id: 1, name: "Stockify", image: "/images/stockify1.png" },
     { id: 2, name: "Energia Sustentável", image: "/images/energy4.png" },
@@ -14,9 +20,9 @@ const MockupGallery = () => {
   return (
     <Grid
       container
-      spacing={3}
+      spacing={isXLargeScreen ? 2 : 4}
       sx={{
-        mt: 10,
+        mt: 5,
         px: 3,
         width: "99vw",
         position: "relative",
@@ -24,26 +30,40 @@ const MockupGallery = () => {
         transform: "translateX(-50%)",
       }}
     >
-      {/* Primeira linha com 2 itens */}
+      {/* Primeira linha */}
       {projects.slice(0, 2).map((project) => (
-        <Grid size={{ xs: 12, sm: 6 }} key={project.id}>
+        <Grid
+          size={{ xs: 12, sm: 12, md: 6, lg: 6 }}
+          key={project.id}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <Box
             sx={{
               position: "relative",
-              height: "600px",
+              height: "100%",
+              width: "100%",
+
               overflow: "hidden",
               borderRadius: "10px",
               cursor: "pointer",
             }}
           >
-            <img
-              src={project.image}
-              alt={project.name}
-              style={{
+            <Box
+              sx={{
+                position: "relative",
+                height: isSmallScreen
+                  ? "350px"
+                  : isMediumScreen
+                  ? "450px"
+                  : "430px",
                 width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transition: "filter 0.3s ease",
+                overflow: "hidden",
+                borderRadius: "10px",
+                cursor: "pointer",
+                backgroundImage: `url(${project.image}), linear-gradient(90deg, #1A2140 0%, #515473 100%)`,
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
               }}
             />
             <Box
@@ -67,7 +87,7 @@ const MockupGallery = () => {
               <Typography
                 sx={{
                   color: "#fff",
-                  fontSize: "18px",
+                  fontSize: isSmallScreen ? "14px" : "18px",
                   fontWeight: "bold",
                   textAlign: "center",
                 }}
@@ -79,26 +99,43 @@ const MockupGallery = () => {
         </Grid>
       ))}
 
-      {/* Segunda linha com 3 itens */}
+      {/* Segunda linha */}
       {projects.slice(2, 5).map((project) => (
-        <Grid size={{ xs: 12, sm: 4 }} key={project.id}>
+        <Grid
+          size={{ xs: 12, sm: 12, md: 6, lg: 4 }}
+          key={project.id}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <Box
             sx={{
               position: "relative",
-              height: "400px",
+              height: "100%",
+              width: "100%",
               overflow: "hidden",
               borderRadius: "10px",
               cursor: "pointer",
+              backgroundImage: `url(${project.image})`,
+              backgroundSize: "contain",
             }}
           >
-            <img
-              src={project.image}
-              alt={project.name}
-              style={{
+            <Box
+              sx={{
+                position: "relative",
+                height: isSmallScreen
+                  ? "350px"
+                  : isMediumScreen
+                  ? "430px"
+                  : isLargeScreen
+                  ? "400px"
+                  : "430px",
                 width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transition: "filter 0.3s ease",
+                overflow: "hidden",
+                borderRadius: "10px",
+                cursor: "pointer",
+                backgroundImage: `url(${project.image}), linear-gradient(90deg, #1A2140 0%, #515473 100%)`,
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
               }}
             />
             <Box
@@ -122,7 +159,7 @@ const MockupGallery = () => {
               <Typography
                 sx={{
                   color: "#fff",
-                  fontSize: "18px",
+                  fontSize: isSmallScreen ? "14px" : "18px",
                   fontWeight: "bold",
                   textAlign: "center",
                 }}
@@ -136,4 +173,5 @@ const MockupGallery = () => {
     </Grid>
   );
 };
+
 export default MockupGallery;
