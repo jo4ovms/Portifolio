@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,11 +11,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
 import "./Navbar.css";
+
 const drawerWidth = 150;
 const navItems = ["Home", "Sobre", "Projetos", "Habilidades", "Contato"];
 
@@ -27,18 +26,16 @@ function Navbar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = useCallback(() => {
+    setScrolling(window.scrollY >= 10);
   }, []);
 
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
-      setScrolling(true);
-    } else {
-      setScrolling(false);
-    }
-  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
 
   const drawer = (
     <Box
@@ -148,6 +145,8 @@ function Navbar(props) {
                   color: "#dedede",
                   ":hover": {
                     color: "#00D9FF",
+                    border: "none",
+                    backgroundColor: "transparent",
                   },
                   fontSize: "16px",
                   fontWeight: "500",
