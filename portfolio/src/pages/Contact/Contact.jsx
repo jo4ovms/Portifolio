@@ -6,23 +6,24 @@ import "./Contact.css";
 const Contact = () => {
   return (
     <div className="contact">
-      <Box sx={{ mt: { xs: 4, md: 8 } }}>
-        {/* Título */}
+      <Box sx={{ mt: { xs: 4, md: 15 } }}>
         <Typography
+          variant="h1"
           style={{
             background: "linear-gradient(to bottom, #fff 20%, #696969 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
           sx={{
-            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+            fontSize: { xs: "2.5rem", sm: "4rem", md: "4rem" },
+            textAlign: "start",
+            mb: 4,
             fontFamily: "DM Sans",
           }}
         >
           Entre em contato!
         </Typography>
 
-        {/* Descrição */}
         <Typography
           sx={{
             textAlign: "start",
@@ -42,7 +43,6 @@ const Contact = () => {
         </Typography>
       </Box>
 
-      {/* Caixa preta de fundo */}
       <Box
         sx={{
           width: "100vw",
@@ -66,7 +66,6 @@ const Contact = () => {
             color: "#fff",
           }}
         >
-          {/* Informações de contato */}
           <Typography
             variant="body1"
             sx={{
@@ -85,94 +84,36 @@ const Contact = () => {
             Email: joaovictormacields@gmail.com
           </Typography>
 
-          {/* Formulário */}
           <Grid container spacing={3}>
-            {/* Campo Nome */}
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    color: "#B4B4B4",
-                    fontFamily: "DM Sans",
-                    mb: 1,
-                  }}
-                >
+                <Typography variant="contacttypography">
                   Nome Completo
                 </Typography>
-                <TextField
-                  placeholder="Ex.: João da Silva"
-                  fullWidth
-                  sx={{
-                    backgroundColor: "#fff",
-                    border: "1px solid #00D9FF",
-                    borderRadius: "10px",
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "10px",
-                    },
-                  }}
-                />
+                <TextField placeholder="Ex.: João da Silva" fullWidth />
               </Box>
             </Grid>
 
-            {/* Campo Email */}
             <Grid size={{ xs: 12, sm: 6 }}>
               <Box>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    color: "#B4B4B4",
-                    fontFamily: "DM Sans",
-                    mb: 1,
-                  }}
-                >
+                <Typography variant="contacttypography">
                   Endereço de Email
                 </Typography>
-                <TextField
-                  placeholder="Ex.: contato@exemplo.com"
-                  fullWidth
-                  sx={{
-                    backgroundColor: "#fff",
-                    border: "1px solid #00D9FF",
-                    borderRadius: "10px",
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "10px",
-                    },
-                  }}
-                />
+                <TextField placeholder="Ex.: contato@exemplo.com" fullWidth />
               </Box>
             </Grid>
           </Grid>
 
-          {/* Campo Mensagem */}
           <Box>
-            <Typography
-              sx={{
-                fontSize: "14px",
-                color: "#B4B4B4",
-                fontFamily: "DM Sans",
-                mb: 1,
-              }}
-            >
-              Sua Mensagem
-            </Typography>
+            <Typography variant="contacttypography">Sua Mensagem</Typography>
             <TextField
               placeholder="Digite sua mensagem aqui..."
               multiline
               rows={4}
               fullWidth
-              sx={{
-                backgroundColor: "#fff",
-                border: "1px solid #00D9FF",
-                borderRadius: "10px",
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px",
-                },
-              }}
             />
           </Box>
 
-          {/* Botão Enviar */}
           <Box sx={{ textAlign: "start" }}>
             <Button
               variant="contained"
