@@ -1,7 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
-import SendIcon from "@mui/icons-material/Send";
+import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -24,11 +21,11 @@ const Footer = () => {
             fontSize: "14px",
           }}
         >
-          ©Copyright{" "}
+          &copy;Copyright {new Date().getFullYear()}{" "}
           <span style={{ color: "#00D9FF" }}>
-            João Victor Maciel dos Santos 2024
+            João Victor Maciel dos Santos
           </span>{" "}
-          Todos os direitos reservados.
+          All rights reserved.
         </Typography>
       </Box>
     </footer>
