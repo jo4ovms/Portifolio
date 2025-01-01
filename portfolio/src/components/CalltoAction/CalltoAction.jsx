@@ -8,7 +8,7 @@ const CalltoAction = () => {
     <Box
       sx={{
         width: "100vw",
-        backgroundColor: "#070707",
+        backgroundColor: theme.palette.background.default,
         pt: 6,
         pb: 6,
         px: 2,
@@ -38,7 +38,7 @@ const CalltoAction = () => {
             fontWeight: "400",
             color: theme.palette.primary.contrastText,
             marginBottom: "20px",
-            fontFamily: "DM Sans, sans-serif",
+
             fontSize: { xs: "40px", md: "60px" },
             lineHeight: { xs: "50px", md: "70px" },
           }}
@@ -49,7 +49,7 @@ const CalltoAction = () => {
           variant="body1"
           sx={{
             color: "#1F1F1F",
-            fontFamily: "DM Sans, sans-serif",
+
             marginBottom: "30px",
             fontSize: "20px",
             lineHeight: { xs: "28px", md: "28px" },
@@ -78,7 +78,7 @@ const CalltoAction = () => {
             sx={{
               width: { xs: "250px", md: "220px" },
               height: "56px",
-              backgroundColor: "#000",
+              backgroundColor: theme.palette.primary.contrastText,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -89,6 +89,12 @@ const CalltoAction = () => {
               ":hover": {
                 transform: "scale(1.05)",
                 backgroundColor: "#111",
+                "& .icon": {
+                  color: "#fff",
+                },
+                "& .text": {
+                  color: "#fff",
+                },
               },
               ":active": {
                 transform: "scale(0.95)",
@@ -100,11 +106,8 @@ const CalltoAction = () => {
             <Typography
               className="text"
               sx={{
-                color: "#bfbfbf",
-                fontFamily: "DM Sans, sans-serif",
                 fontSize: "16px",
                 transition: "color 0.3s ease-in-out",
-                ":hover": { color: "#fff" },
               }}
             >
               Vamos conversar

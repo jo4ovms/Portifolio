@@ -1,11 +1,19 @@
-import { Typography, Box, TextField, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  TextField,
+  Button,
+  useTheme,
+  Container,
+} from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Email from "@mui/icons-material/Email";
 import Send from "@mui/icons-material/Send";
 import "./Contact.css";
 const Contact = () => {
+  const theme = useTheme();
   return (
-    <div className="contact">
+    <Container component="main">
       <Box sx={{ mt: { xs: 4, md: 15 } }}>
         <Typography
           variant="h1"
@@ -18,25 +26,12 @@ const Contact = () => {
             fontSize: { xs: "2.5rem", sm: "4rem", md: "4rem" },
             textAlign: "start",
             mb: 4,
-            fontFamily: "DM Sans",
           }}
         >
           Entre em contato!
         </Typography>
 
-        <Typography
-          sx={{
-            textAlign: "start",
-            fontSize: "1.2rem",
-            fontWeight: 400,
-            lineHeight: "28px",
-            fontFamily: "DM Sans",
-            color: "#B4B4B4",
-            maxWidth: "800px",
-            margin: "0 40px",
-            mt: { xs: 2, sm: 3, md: 4 },
-          }}
-        >
+        <Typography variant="subtitle1">
           Preencha o formulário abaixo para entrar em contato comigo. Fico
           sempre animado para conhecer novas oportunidades e farei o meu melhor
           para responder à sua mensagem dentro de 24 horas.
@@ -47,7 +42,7 @@ const Contact = () => {
         sx={{
           width: "100vw",
           mt: { xs: 6, sm: 8, md: 10 },
-          backgroundColor: "#070707",
+          backgroundColor: theme.palette.background.default,
           pt: 6,
           pb: 6,
           px: 2,
@@ -59,11 +54,11 @@ const Contact = () => {
           sx={{
             maxWidth: "1200px",
             margin: "0 auto",
-            backgroundColor: "#070707",
+            backgroundColor: theme.palette.background.default,
             display: "flex",
             flexDirection: "column",
             gap: 3,
-            color: "#fff",
+            color: theme.palette.background.paper,
           }}
         >
           <Typography
@@ -72,16 +67,12 @@ const Contact = () => {
               display: "flex",
               width: { xs: "100%", sm: "60%", md: "45%", lg: "31%" },
               alignItems: "center",
-              fontSize: { xs: "0.9rem", md: "1rem" },
-              color: "#B4B4B4",
-              fontFamily: "DM Sans",
-              border: "1px dashed #00D9FF",
+              border: `1px dashed ${theme.palette.primary.main}`,
               borderRadius: "12px",
               padding: "8px 12px",
             }}
           >
-            <Email sx={{ mr: 1, fontSize: { xs: "1rem", sm: "1.5rem" } }} />{" "}
-            Email: joaovictormacields@gmail.com
+            <Email sx={{ mr: 1 }} /> Email: joaovictormacields@gmail.com
           </Typography>
 
           <Grid container spacing={3}>
@@ -90,7 +81,11 @@ const Contact = () => {
                 <Typography variant="contacttypography">
                   Nome Completo
                 </Typography>
-                <TextField placeholder="Ex.: João da Silva" fullWidth />
+                <TextField
+                  sx={{ mt: 1 }}
+                  placeholder="Ex.: João da Silva"
+                  fullWidth
+                />
               </Box>
             </Grid>
 
@@ -99,7 +94,11 @@ const Contact = () => {
                 <Typography variant="contacttypography">
                   Endereço de Email
                 </Typography>
-                <TextField placeholder="Ex.: contato@exemplo.com" fullWidth />
+                <TextField
+                  sx={{ mt: 1 }}
+                  placeholder="Ex.: contato@exemplo.com"
+                  fullWidth
+                />
               </Box>
             </Grid>
           </Grid>
@@ -107,6 +106,7 @@ const Contact = () => {
           <Box>
             <Typography variant="contacttypography">Sua Mensagem</Typography>
             <TextField
+              sx={{ mt: 1 }}
               placeholder="Digite sua mensagem aqui..."
               multiline
               rows={4}
@@ -119,19 +119,10 @@ const Contact = () => {
               variant="contained"
               endIcon={<Send />}
               sx={{
-                fontWeight: 500,
-                textTransform: "none",
-                fontFamily: "DM Sans",
-                fontSize: { xs: "14px", sm: "16px" },
-                backgroundColor: "#00D9FF",
-                color: "#000",
+                fontSize: "16px",
                 padding: "12px 32px",
-                borderRadius: "50px",
-                "&:hover": {
-                  backgroundColor: "#000",
-                  border: "1px solid #00D9FF",
-                  color: "#fff",
-                  transition: "all 0.3s ease-in-out",
+                ":active": {
+                  transform: undefined,
                 },
               }}
             >
@@ -140,7 +131,7 @@ const Contact = () => {
           </Box>
         </Box>
       </Box>
-    </div>
+    </Container>
   );
 };
 

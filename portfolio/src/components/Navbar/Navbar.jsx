@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useTheme } from "@mui/material";
 
 const drawerWidth = 150;
 const navItems = ["Home", "Sobre", "Projetos", "Habilidades", "Contato"];
@@ -21,6 +22,7 @@ const navItems = ["Home", "Sobre", "Projetos", "Habilidades", "Contato"];
 function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const theme = useTheme();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -42,8 +44,8 @@ function Navbar(props) {
       onClick={handleDrawerToggle}
       sx={{
         textAlign: "left",
-        backgroundColor: "#333",
-        color: "#B4B4B4",
+        backgroundColor: theme.palette.background.secondary,
+        color: theme.palette.text.secondary,
         height: "100%",
       }}
     >
@@ -75,8 +77,8 @@ function Navbar(props) {
             </ListItemButton>
             <Divider
               sx={{
-                color: "#fff",
-                backgroundColor: "#fff",
+                color: theme.palette.background.paper,
+                backgroundColor: theme.palette.background.paper,
                 ml: -5,
                 width: "100%",
                 mb: 5,
@@ -100,7 +102,9 @@ function Navbar(props) {
         component="nav"
         className={scrolling ? "navbar-scroll" : ""}
         sx={{
-          backgroundColor: scrolling ? "#000" : "transparent",
+          backgroundColor: scrolling
+            ? theme.palette.primary.contrastText
+            : "transparent",
 
           position: "fixed",
           width: "100%",
@@ -125,7 +129,9 @@ function Navbar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon sx={{ color: "#fff", fontSize: "40px" }} />
+            <MenuIcon
+              sx={{ color: theme.palette.background.paper, fontSize: "40px" }}
+            />
           </IconButton>
 
           <Box
@@ -142,16 +148,15 @@ function Navbar(props) {
                 key={item}
                 disableRipple
                 sx={{
-                  color: "#dedede",
+                  color: theme.palette.background.paper,
                   ":hover": {
-                    color: "#00D9FF",
+                    color: theme.palette.primary.main,
                     border: "none",
                     backgroundColor: "transparent",
                   },
                   fontSize: "16px",
                   fontWeight: "500",
                   textTransform: "capitalize",
-                  fontFamily: "DM Sans",
                   backgroundColor: "transparent",
                   transition: "all .5s ease",
                 }}

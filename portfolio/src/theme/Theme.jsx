@@ -7,7 +7,9 @@ const theme = createTheme({
       contrastText: "#000",
     },
     background: {
+      main: "#130F40",
       default: "#070707",
+      secondary: "#333",
       paper: "#fff",
     },
     text: {
@@ -28,11 +30,40 @@ const theme = createTheme({
       lineHeight: "28px",
       color: "#b4b4b4",
     },
+    h3: {
+      fontSize: "50px",
+      color: "#fff",
+      fontWeight: "bold",
+    },
+    h5: {
+      fontSize: "25px",
+      fontWeight: "bold",
+    },
+    h6: {
+      color: "#00D9FF",
+      fontWeight: "bold",
+      fontSize: "22px",
+    },
     body1: {
       fontSize: "16px",
       lineHeight: "28px",
       fontWeight: 400,
       color: "#b4b4b4",
+    },
+    body2: {
+      fontSize: "16px",
+      lineHeight: "28px",
+      fontWeight: "bold",
+      color: "#b4b4b4",
+    },
+    subtitle1: {
+      fontSize: "20px",
+      textAlign: "start",
+      fontWeight: 400,
+      lineHeight: "28px",
+      color: "#B4B4B4",
+      maxWidth: "800px",
+      margin: "0 40px",
     },
     button: {
       fontSize: "16px",
@@ -71,6 +102,7 @@ const theme = createTheme({
           borderRadius: "10px",
           "& .MuiOutlinedInput-root": {
             borderRadius: "10px",
+            color: "#333",
           },
         },
       },
@@ -79,6 +111,31 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontFamily: "DM Sans, sans-serif",
+        },
+      },
+    },
+    MuiTimelineContent: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#070707",
+          color: "#fff",
+          p: 2,
+          borderRadius: "10px",
+          maxWidth: "80%",
+          mx: "auto",
+          animation: "fade-in 1s ease-out",
+          "@keyframes fade-in": {
+            from: { opacity: 0 },
+            to: { opacity: 1 },
+          },
+        },
+      },
+    },
+    MuiTimelineConnector: {
+      styleOverrides: {
+        root: {
+          background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+          height: "3px",
         },
       },
     },

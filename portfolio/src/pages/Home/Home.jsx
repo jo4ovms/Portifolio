@@ -75,7 +75,7 @@ const Home = () => {
               backgroundImage: `url(me3.jpg)`,
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              border: "4px #130F40 solid",
+              border: `4px ${theme.palette.background.main} solid`,
               backgroundPosition: "center",
             }}
           />

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import "./Embla.css";
@@ -7,13 +7,14 @@ const EmblaCarousel = (props) => {
   const [emblaRef] = useEmblaCarousel(options, [
     AutoScroll({ playOnInit: true }),
   ]);
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
         width: "100vw",
         mt: { xs: 6, sm: 8, md: 10 },
-        backgroundColor: "#070707",
+        backgroundColor: theme.palette.background.default,
         pt: 6,
         pb: 6,
         px: 2,
@@ -24,14 +25,11 @@ const EmblaCarousel = (props) => {
       <Typography
         variant="h2"
         sx={{
-          fontSize: "16px",
           mb: "-40px",
           textTransform: "uppercase",
           letterSpacing: "5px",
-          color: "#fff",
-          fontFamily: "DM Sans",
+          color: theme.palette.background.paper,
           textAlign: "center",
-          fontWeight: "500",
           paddingTop: "10px",
         }}
       >
