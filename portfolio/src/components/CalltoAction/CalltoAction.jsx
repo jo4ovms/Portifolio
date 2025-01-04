@@ -1,7 +1,6 @@
 import { Box, Typography, Button, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
-
 const CalltoAction = () => {
   const theme = useTheme();
   return (
@@ -18,7 +17,7 @@ const CalltoAction = () => {
     >
       <Box
         sx={{
-          backgroundColor: theme.palette.primary.main,
+          background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
           width: {
             xs: "calc(100% - 40px)",
             md: "calc(100% - 200px)",
