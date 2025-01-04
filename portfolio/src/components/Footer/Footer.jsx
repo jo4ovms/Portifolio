@@ -22,7 +22,14 @@ const Footer = () => {
           }}
         >
           &copy;Copyright {new Date().getFullYear()}{" "}
-          <span style={{ color: "#00D9FF" }}>
+          <span
+            style={{
+              fontWeight: 600,
+              background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             João Victor Maciel dos Santos
           </span>{" "}
           All rights reserved.
