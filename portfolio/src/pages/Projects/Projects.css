@@ -1,0 +1,6 @@
+.featuredProjectImage {
+  border-image: linear-gradient(to right, #00d9ff 0%, #00ff94 100%) 1;
+  border-width: 4px;
+  border-style: solid;
+  padding: 5px;
+}
