@@ -13,8 +13,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
 import { useTheme } from "@mui/material";
+import PropTypes from "prop-types";
+import "./Navbar.css";
 
 const drawerWidth = 150;
 const navItems = ["Home", "Sobre", "Projetos", "Habilidades", "Contato"];
@@ -24,7 +25,10 @@ function Navbar(props) {
   const [scrolling, setScrolling] = useState(false);
   const theme = useTheme();
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = (reason) => {
+    if (reason === "backdropClick") {
+      setMobileOpen((prevState) => !prevState);
+    }
     setMobileOpen((prevState) => !prevState);
   };
 
@@ -47,6 +51,7 @@ function Navbar(props) {
         backgroundColor: theme.palette.background.secondary,
         color: theme.palette.text.secondary,
         height: "100%",
+        overflow: "hidden",
       }}
     >
       <List
@@ -79,8 +84,8 @@ function Navbar(props) {
               sx={{
                 color: theme.palette.background.paper,
                 backgroundColor: theme.palette.background.paper,
-                ml: -5,
-                width: "100%",
+                ml: -10,
+                width: "120%",
                 mb: 5,
                 display: "flex",
               }}
@@ -118,7 +123,7 @@ function Navbar(props) {
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: { sm: "center" },
             width: "100%",
           }}
         >
@@ -137,14 +142,15 @@ function Navbar(props) {
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
-              width: "100%",
+              m: "0 300px  ",
+              flexGrow: 1,
+              justifyContent: "center",
               gap: "50px",
-              justifyContent: "flex-end",
-              marginRight: "300px",
             }}
           >
             {navItems.map((item) => (
               <Button
+                variant="text"
                 key={item}
                 disableRipple
                 sx={{
@@ -155,10 +161,18 @@ function Navbar(props) {
                     backgroundColor: "transparent",
                   },
                   fontSize: "16px",
+                  flexGrow: 1,
                   fontWeight: "500",
                   textTransform: "capitalize",
                   backgroundColor: "transparent",
-                  transition: "all .5s ease",
+
+                  transition: "all .1s ease",
+                  "&:hover": {
+                    background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    fontWeight: "bold",
+                  },
                 }}
                 component={Link}
                 to={`/${item.toLowerCase()}`}
@@ -174,9 +188,9 @@ function Navbar(props) {
           container={container}
           variant="temporary"
           anchor="top"
-          hideBackdrop
           transitionDuration={200}
           open={mobileOpen}
+          onClickAway={handleDrawerToggle}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true,
@@ -189,7 +203,7 @@ function Navbar(props) {
               mt: "50px",
               ml: "50px",
               width: drawerWidth,
-              height: "30vh",
+              height: "270px",
             },
           }}
         >
@@ -204,3 +218,7 @@ function Navbar(props) {
 }
 
 export default Navbar;
+
+Navbar.propTypes = {
+  window: PropTypes.func,
+};
