@@ -18,6 +18,8 @@
     "@svgr/webpack": "^8.1.0",
     "embla-carousel-auto-scroll": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
+    "framer-motion": "^11.15.0",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
