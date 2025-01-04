@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import PropTypes from "prop-types";
 import "./Embla.css";
 const EmblaCarousel = (props) => {
   const { slides, options } = props;
@@ -57,3 +58,8 @@ const EmblaCarousel = (props) => {
 };
 
 export default EmblaCarousel;
+
+EmblaCarousel.propTypes = {
+  slides: PropTypes.array.isRequired,
+  options: PropTypes.object.isRequired,
+};
