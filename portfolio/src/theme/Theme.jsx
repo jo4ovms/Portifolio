@@ -83,7 +83,7 @@ const theme = createTheme({
           textTransform: "none",
           "&:hover": {
             backgroundColor: "#000",
-            border: "1px solid #00D9FF",
+
             color: "#fff",
             transition: "all 0.3s ease-in-out",
           },
@@ -134,8 +134,16 @@ const theme = createTheme({
     MuiTimelineConnector: {
       styleOverrides: {
         root: {
-          background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+          background: "linear-gradient(to top, #00D9FF, #00FF94)",
           height: "3px",
+        },
+      },
+    },
+    MuiTimelineDot: {
+      styleOverrides: {
+        root: {
+          background: "linear-gradient(to top, #00D9FF, #00FF94)",
+          borderStyle: "none",
         },
       },
     },
