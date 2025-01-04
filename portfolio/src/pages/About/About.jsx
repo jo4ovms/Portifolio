@@ -20,6 +20,7 @@ import {
   Work as WorkIcon,
   School as SchoolIcon,
 } from "@mui/icons-material";
+import CalltoAction from "../../components/CalltoAction/CalltoAction";
 
 const About = () => {
   const theme = useTheme();
@@ -147,12 +148,28 @@ const About = () => {
               textAlign: { xs: "center", md: "left" },
             }}
           >
-            <span style={{ color: theme.palette.primary.main }}>
+            <span
+              style={{
+                fontWeight: 600,
+                background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
               Desenvolvedor{" "}
             </span>
             focado em transformar{" "}
-            <span style={{ color: theme.palette.primary.main }}>ideias </span>em
-            soluções práticas e eficientes.
+            <span
+              style={{
+                fontWeight: 600,
+                background: "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              ideias{" "}
+            </span>
+            em soluções práticas e eficientes.
           </Typography>
           <Typography
             variant="body1"
@@ -243,16 +260,26 @@ const About = () => {
               },
             }}
           >
-            <Timeline position={isSmallScreen ? "right" : "alternate"}>
+            <Timeline position={isSmallScreen ? "right" : "alternate-reverse"}>
               <TimelineItem>
                 <TimelineSeparator>
-                  <TimelineDot color="primary">
-                    <WorkIcon />
+                  <TimelineDot>
+                    <WorkIcon style={{ color: "black" }} />
                   </TimelineDot>
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ p: 2 }}>
-                  <Typography variant="h6" sx={{ mb: 1 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ mb: 1 }}
+                    style={{
+                      fontWeight: 600,
+                      background:
+                        "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     2024 - PRESENTE
                   </Typography>
                   <Typography variant="h5" sx={{ mb: 1 }}>
@@ -270,13 +297,23 @@ const About = () => {
 
               <TimelineItem>
                 <TimelineSeparator>
-                  <TimelineDot color="primary">
-                    <CodeIcon />
+                  <TimelineDot>
+                    <CodeIcon style={{ color: "black" }} />
                   </TimelineDot>
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ p: 2 }}>
-                  <Typography variant="h6" sx={{ mb: 1 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ mb: 1 }}
+                    style={{
+                      fontWeight: 600,
+                      background:
+                        "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     2023 - PRESENTE
                   </Typography>
                   <Typography variant="h5" sx={{ mb: 1 }}>
@@ -298,13 +335,23 @@ const About = () => {
 
               <TimelineItem>
                 <TimelineSeparator>
-                  <TimelineDot color="primary">
-                    <SchoolIcon />
+                  <TimelineDot>
+                    <SchoolIcon style={{ color: "black" }} />
                   </TimelineDot>
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ p: 2 }}>
-                  <Typography variant="h6" sx={{ mb: 1 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ mb: 1 }}
+                    style={{
+                      fontWeight: 600,
+                      background:
+                        "linear-gradient(to bottom, #00D9FF, #00FF94)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     2023 - PRESENTE
                   </Typography>
                   <Typography variant="h5" sx={{ mb: 1 }}>
@@ -326,6 +373,17 @@ const About = () => {
           </Box>
         </Box>
       </Box>
+      <Grid
+        container
+        size={{ xs: 12, md: 12, lg: 12 }}
+        sx={{
+          mb: "-35px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <CalltoAction />
+      </Grid>
     </Container>
   );
 };
