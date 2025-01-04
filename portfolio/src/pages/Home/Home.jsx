@@ -7,11 +7,13 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import MockupGallery from "../../components/MockupGallery/MockupGallery";
 import CalltoAction from "../../components/CalltoAction/CalltoAction";
 import DownloadIcon from "@mui/icons-material/Download";
 import EmblaCarousel from "../../components/Carousel/EmblaCarousel";
+import RoundGradientButton from "../Skills/ContainedButtons";
+import { motion, useInView } from "framer-motion";
 
 const Home = () => {
   const theme = useTheme();
@@ -33,6 +35,9 @@ const Home = () => {
     []
   );
 
+  const mockupRef = useRef(null);
+  const isInView = useInView(mockupRef, { once: true });
+
   const OPTIONS = {
     loop: true,
     playOnInit: false,
@@ -45,6 +50,23 @@ const Home = () => {
 
   const SLIDES = images;
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0 },
+  };
+
+  const zoomInVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 30 },
+    visible: { opacity: 1, scale: 1, y: 0 },
+  };
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+  const fadeInVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
     <Container
       sx={{
@@ -62,23 +84,29 @@ const Home = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
+        component={motion.div}
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
       >
         <Grid size={{ xs: 12, sm: 9, md: 10, lg: 5 }}>
-          <Box
-            sx={{
-              position: "relative",
-              width: "100%",
-              paddingTop: "calc(100% * 16 / 16)",
-              overflow: "hidden",
-              borderRadius: "40px",
-              cursor: "pointer",
-              backgroundImage: `url(me3.jpg)`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              border: `4px ${theme.palette.background.main} solid`,
-              backgroundPosition: "center",
-            }}
-          />
+          <motion.div variants={fadeInUp}>
+            <Box
+              sx={{
+                position: "relative",
+                width: "100%",
+                paddingTop: "calc(100% * 16 / 16)",
+                overflow: "hidden",
+                borderRadius: "40px",
+                cursor: "pointer",
+                backgroundImage: `url(me3.jpg)`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                border: `4px ${theme.palette.background.main} solid`,
+                backgroundPosition: "center",
+              }}
+            />
+          </motion.div>
         </Grid>
 
         <Grid
@@ -87,76 +115,119 @@ const Home = () => {
           direction="column"
           spacing={2}
         >
-          <Grid>
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: isSmallScreen
-                  ? "40px"
-                  : isMediumScreen
-                  ? "50px"
-                  : isLargeScreen
-                  ? "50px"
-                  : "60px",
-                textAlign: isLargeScreen ? "center" : "left",
-                margin: isLargeScreen ? "unset" : "-10px 50px 0 90px",
-                width: isLargeScreen ? "100%" : "calc(100% - -40px)",
-              }}
-            >
-              <span
-                style={{
-                  background: "linear-gradient(to right, #fff 0%, #696969 85%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
+          <motion.div variants={fadeInUp}>
+            <Grid>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: isSmallScreen
+                    ? "40px"
+                    : isMediumScreen
+                    ? "50px"
+                    : isLargeScreen
+                    ? "50px"
+                    : "60px",
+                  textAlign: isLargeScreen ? "center" : "left",
+                  margin: isLargeScreen ? "unset" : "-10px 50px 0 90px",
+                  width: isLargeScreen ? "100%" : "calc(100% - -40px)",
                 }}
               >
-                Sou um desenvolvedor back-end, entusiasta de front-end e
-                apaixonado por tecnologia.
-              </span>
-            </Typography>
-          </Grid>
+                <span
+                  style={{
+                    background:
+                      "linear-gradient(to right, #fff 0%, #696969 85%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Sou um desenvolvedor back-end, entusiasta de front-end e
+                  apaixonado por tecnologia.
+                </span>
+              </Typography>
+            </Grid>
+          </motion.div>
 
-          <Grid>
-            <Typography
-              variant="h2"
+          <motion.div variants={fadeInUp}>
+            <Grid>
+              <Typography
+                variant="h2"
+                sx={{
+                  textAlign: isLargeScreen ? "center" : "left",
+                  margin: isLargeScreen ? "unset" : "0 90px",
+                  width: isLargeScreen ? "100%" : "calc(100% - -30px)",
+                }}
+              >
+                Olá, me chamo João e estou cursando Análise e Desenvolvimento de
+                Sistemas. Construo soluções escaláveis no back-end com Java e
+                interfaces modernas e responsivas no front-end com React.
+              </Typography>
+            </Grid>
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <Grid
               sx={{
-                textAlign: isLargeScreen ? "center" : "left",
-                margin: isLargeScreen ? "unset" : "0 90px",
-                width: isLargeScreen ? "100%" : "calc(100% - -30px)",
+                display: "flex",
+                justifyContent: isLargeScreen ? "center" : "unset",
               }}
             >
-              Olá, me chamo João e estou cursando Análise e Desenvolvimento de
-              Sistemas. Construo soluções escaláveis no back-end com Java e
-              interfaces modernas e responsivas no front-end com React.
-            </Typography>
-          </Grid>
+              <RoundGradientButton
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  p: "15px 30px",
+                  margin: isMediumScreen ? "unset" : "0 90px",
+                  mt: isMediumScreen ? "unset" : "15px",
+                  background: "linear-gradient(to right, #00D9FF, #00FF94)",
+                  transition: "behavior 0.5s ease",
+                  ":hover": {
+                    background: "#000",
+                    border:
+                      "1px solid linear-gradient(to right, #00D9FF, #00FF94)",
+                  },
+                }}
+                icon={<DownloadIcon />}
+              >
+                Download CV
+              </RoundGradientButton>
 
-          <Grid
-            sx={{
-              display: "flex",
-              justifyContent: isLargeScreen ? "center" : "unset",
-            }}
-          >
-            <Button
+              {/* <Button
               variant="contained"
               endIcon={<DownloadIcon />}
               sx={{
                 fontSize: "16px",
+                fontWeight: 500,
                 p: "15px 30px",
                 margin: isMediumScreen ? "unset" : "0 90px",
                 mt: isMediumScreen ? "unset" : "15px",
+                background: "linear-gradient(to right, #00D9FF, #00FF94)",
+                transition: "behavior 0.5s ease",
+                ":hover": {
+                  background: "#000",
+                  border:
+                    "1px solid linear-gradient(to right, #00D9FF, #00FF94)",
+                },
               }}
             >
               Download CV
-            </Button>
-          </Grid>
+            </Button> */}
+            </Grid>
+          </motion.div>
         </Grid>
       </Grid>
 
       <Grid
         container
+        ref={mockupRef}
         sx={{ mt: isMediumScreen ? 10 : isLargeScreen ? 130 : 10 }}
         justifyContent="center"
+        component={motion.div}
+        variants={zoomInVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        transition={{
+          duration: 0.7,
+          ease: [0.17, 0.67, 0.83, 0.67], // "Ease-In-Out" personalizado
+        }}
       >
         <Grid size={{ xs: 12, md: 12 }}>
           <Typography
