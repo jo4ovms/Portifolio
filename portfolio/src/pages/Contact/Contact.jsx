@@ -2,16 +2,18 @@ import {
   Typography,
   Box,
   TextField,
-  Button,
   useTheme,
   Container,
+  Button,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Email from "@mui/icons-material/Email";
 import Send from "@mui/icons-material/Send";
 import "./Contact.css";
+import RoundGradientButton from "../../pages/Skills/ContainedButtons";
 const Contact = () => {
   const theme = useTheme();
+
   return (
     <Container component="main">
       <Box sx={{ mt: { xs: 4, md: 15 } }}>
@@ -114,23 +116,52 @@ const Contact = () => {
             />
           </Box>
 
-          <Box sx={{ textAlign: "start" }}>
-            <Button
-              variant="contained"
-              endIcon={<Send />}
-              sx={{
-                fontSize: "16px",
-                padding: "12px 32px",
-                ":active": {
-                  transform: undefined,
-                },
-              }}
-            >
-              Enviar Mensagem
-            </Button>
-          </Box>
+          {/* <Box
+            sx={{
+              textAlign: "start",
+              width: "100%",
+              position: "relative", // Mantém o contexto sem ocultar pseudo-elementos
+              overflow: "visible",
+            }}
+          >
+           
+          </Box> */}
+          <Button
+            variant="contained"
+            endIcon={<Send />}
+            sx={{
+              fontSize: "16px",
+              padding: "12px 32px",
+              ":active": {
+                transform: undefined,
+              },
+            }}
+          >
+            Enviar Mensagem
+          </Button>
         </Box>
       </Box>
+      {/* <RoundGradientButton
+        sx={{
+          fontSize: "16px",
+          fontWeight: 500,
+          ":active": {
+            transform: undefined,
+          },
+
+          mt: 5,
+          mb: 5,
+          background: "linear-gradient(to right, #00D9FF, #00FF94)",
+          transition: "behavior 0.5s ease",
+          ":hover": {
+            background: "#000",
+            border: "20px solid linear-gradient(to right, #00D9FF, #00FF94)",
+          },
+        }}
+        icon={<Send />}
+      >
+        Enviar Mensagem
+      </RoundGradientButton> */}
     </Container>
   );
 };
